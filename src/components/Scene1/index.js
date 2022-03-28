@@ -1,5 +1,6 @@
 import React from "react";
 import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 
 function Scene1() {
   function Box() {
@@ -15,6 +16,7 @@ function Scene1() {
   return (
     <div id="Scene1">
       <Canvas>
+        <OrbitControls />
         <Box />
       </Canvas>
     </div>
