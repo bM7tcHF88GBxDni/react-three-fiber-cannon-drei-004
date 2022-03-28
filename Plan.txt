@@ -1,0 +1,14 @@
+Test. 1
+Create a three js canvas scene that encompasses the whole app
+Create a visible 3d geometry mesh in a React component
+
+Plan. 1
+
+
+Test. 2
+Create a three js canvas scene that encompasses the whole app
+Create a grid of 4 components
+onClick
+    Create a 3d object in that component
+    Center 3d object at center of component
+    api.impulse 0, 2, 0
