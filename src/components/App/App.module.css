@@ -1,0 +1,7 @@
+.App {
+  text-align: center;
+  background-color: rgba(0, 255, 170, 0.233);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+}
