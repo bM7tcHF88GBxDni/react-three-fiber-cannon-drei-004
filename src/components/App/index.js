@@ -3,6 +3,7 @@ import Scene1 from "../Scene1";
 import { Canvas } from "@react-three/fiber";
 import { Html, Scroll, ScrollControls } from "@react-three/drei";
 import { Suspense } from "react";
+import TestReactComponent from "../TestReactComponent";
 
 function App() {
   return (
@@ -25,7 +26,10 @@ function App() {
               <Html>this is between the second Scroll tags</Html>
             </Scroll>
             <Scroll>
-              <Html>this is between the third Scroll tags</Html>
+              <Html>
+                this is between the third Scroll tags
+                <TestReactComponent></TestReactComponent>
+              </Html>
             </Scroll>
           </ScrollControls>
         </Canvas>
