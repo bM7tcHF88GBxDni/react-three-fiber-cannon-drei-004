@@ -16,12 +16,12 @@ function Scene1() {
   }
 
   return (
-    <div id={css.Scene1}>
-      <Canvas>
-        <OrbitControls />
-        <Box />
-      </Canvas>
-    </div>
+    <>
+      <OrbitControls enableZoom={false} />
+      <ambientLight intensity={0.5} />
+      <pointLight position={[5, 10, 4]} color="white" intensity={0.5} />
+      <Box />
+    </>
   );
 }
 
