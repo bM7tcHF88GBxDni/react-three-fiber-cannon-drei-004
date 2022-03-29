@@ -12,3 +12,18 @@ onClick
     Create a 3d object in that component
     Center 3d object at center of component
     api.impulse 0, 2, 0
+
+
+Plan.
+3 Scrolling Pages?
+or
+3 React component scenes at 100%vh and 100% vw
+
+Page 1 - slowly rotating bonfire from DS
+Page 2
+- Droika text CI/CD
+- Made from grouped block "bricks", some of which can be pushed over
+Page 3 - normal React page
+
+One scroll should scroll whole page
+Little dot marker showing how many pages
