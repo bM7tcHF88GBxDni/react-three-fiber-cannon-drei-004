@@ -1,24 +1,17 @@
-Test. 1
-Create a three js canvas scene that encompasses the whole app
-Create a visible 3d geometry mesh in a React component
-
-Plan. 1
-
+Things. to do:
+Create and move the NavBar into the canvas
+Test fetching data in the canvas
+Create a footer
+Perhaps Two 100vh pages, A scene Per Page
 
 Test. 2
-Create a three js canvas scene that encompasses the whole app
-Create a grid of 4 components
+Create a css grid of 4 components
 onClick
     Create a 3d object in that component
     Center 3d object at center of component
-    api.impulse 0, 2, 0
+    Use r3cannon api.impulse 0, 0, 2 (or another library?)
 
-
-Plan.
-3 Scrolling Pages?
-or
-3 React component scenes at 100%vh and 100% vw
-
+Page. Ideas Draft
 Page 1 - slowly rotating bonfire from DS
 Page 2
 - Droika text CI/CD
