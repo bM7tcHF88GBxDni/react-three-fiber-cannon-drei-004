@@ -1,26 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
+import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
 import css from "./Scene1.module.css";
 
 function Scene1() {
-  function Box() {
-    //this function is called as a Component to render it, it's just a React Component?
+  function CreateBox({ boxColor, boxPosition, boxRotation }) {
     return (
-      <mesh>
+      <mesh position={boxPosition}>
+        <boxGeometry attach="geometry" />
+        <meshPhongMaterial attach="material" color={boxColor} />
+      </mesh>
+    );
+  }
+
+  function Box2() {
+    return (
+      <mesh position>
         <boxBufferGeometry attach="geometry" />
-        <meshLambertMaterial attach="material" color="teal" />
+        <meshLambertMaterial attach="material" color="green" />
       </mesh>
     );
   }
 
   return (
     <>
-      <OrbitControls enableZoom={false} />
-      <ambientLight intensity={0.5} />
-      <pointLight position={[5, 10, 4]} color="white" intensity={0.5} />
-      <Box />
+      <mesh position={[1, 0, 0]}>
+        <boxBufferGeometry attach="geometry" />
+        <meshLambertMaterial attach="material" color="lightpink" />
+      </mesh>
+      <CreateBox boxPosition={[0, 0, 0]} boxColor="lightsalmon" />
+      <CreateBox boxPosition={[0, 1, 0]} boxColor="lightcyan" />
+      <CreateBox boxPosition={[1, 0, -1]} boxColor="rgba(100,100,100,100)" />
     </>
   );
 }
