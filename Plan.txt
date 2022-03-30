@@ -1,4 +1,7 @@
 Things. to do:
+Compartmentalise Lighting and meshes/Scene1
+Look into Scroll Control- Orbit Controls do not affect scrolling velocity. (Camera always moves in the direction of Lightblue cube to Lightsalmon cube)
+
 Create and move the NavBar into the canvas
 Test fetching data in the canvas
 Create a footer

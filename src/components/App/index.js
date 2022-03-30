@@ -12,34 +12,39 @@ function App() {
         <Canvas className={css.scene1} frameloop="demand" pixelRatio={[1, 2]}>
           <ScrollControls
             className={css.scrollControl}
-            pages={2} // Each page takes 100% of the height of the canvas
-            distance={10} // A factor that increases scroll bar travel (default: 1)
+            pages={3} // Each page takes 100% of the height of the canvas
+            distance={1} // A factor that increases scroll bar travel (default: 1)
             damping={8} // Friction, higher is faster (default: 4)
-            horizontal={false} // Can also scroll horizontally (default: false)
+            horizontal={true} // Can also scroll horizontally (default: false)
             infinite={false} // Can also scroll infinitely (default: false)
           >
             <Scroll>
-              {/*               <Html>
+              <Html>
                 <h1>react-three-fiber-cannon-drei-004</h1>
-              </Html> */}
+              </Html>
               <Scene1></Scene1>
-              <mesh position={[-1, 0, 0]}>
+
+              <ambientLight intensity={0.5} />
+              <directionalLight position={[5, 10, 4]} intensity={0.2} />
+              <directionalLight position={[5, -10, -4]} intensity={0.1} />
+              {/* <OrbitControls enableZoom={false} /> */}
+            </Scroll>
+            <Scroll>
+              <mesh position={[1, -1, 0]}>
+                <boxBufferGeometry attach="geometry" />
+                <meshLambertMaterial attach="material" color="lightpink" />
+              </mesh>
+              <mesh position={[-1, -1, 0]}>
                 <boxBufferGeometry attach="geometry" />
                 <meshLambertMaterial attach="material" color="lightgrey" />
               </mesh>
-              <ambientLight intensity={0.5} />
-              <directionalLight position={[5, 10, 4]} intensity={0.3} />
-              <OrbitControls enableZoom={false} />
-            </Scroll>
-            {/*             <Scroll>
-              <Html>this is between the second Scroll tags</Html>
             </Scroll>
             <Scroll>
               <Html>
                 this is between the third Scroll tags
                 <TestReactComponent></TestReactComponent>
               </Html>
-            </Scroll> */}
+            </Scroll>
           </ScrollControls>
         </Canvas>
       </div>
