@@ -12,7 +12,6 @@ function App() {
       <div className={css.appContainer}>
         <Canvas className={css.scene1} frameloop="demand" pixelRatio={[1, 2]}>
           <Lighting />
-          {/* <OrbitControls enableZoom={false} /> */}
           <ScrollControls
             className={css.scrollControl}
             pages={3} // Each page takes 100% of the height of the canvas

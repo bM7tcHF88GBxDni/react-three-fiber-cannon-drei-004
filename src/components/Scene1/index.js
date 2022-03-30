@@ -7,10 +7,23 @@ import css from "./Scene1.module.css";
 
 function Scene1() {
   function CreateBox({ boxColor, boxPosition, boxRotation }) {
+    const [hovered, setHovered] = useState(false);
+
     return (
-      <mesh position={boxPosition}>
+      <mesh
+        position={boxPosition}
+        onPointerOver={() => {
+          setHovered(true);
+        }}
+        onPointerOut={() => {
+          setHovered(false);
+        }}
+      >
         <boxGeometry attach="geometry" />
-        <meshPhongMaterial attach="material" color={boxColor} />
+        <meshPhongMaterial
+          attach="material"
+          color={hovered ? "cyan" : boxColor}
+        />
       </mesh>
     );
   }
