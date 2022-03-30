@@ -10,7 +10,8 @@ function App() {
   return (
     <>
       <div className={css.appContainer}>
-        <Canvas className={css.scene1} frameloop="demand" pixelRatio={[1, 2]}>
+        <Canvas className={css.scene1} pixelRatio={[1, 2]}>
+          {/* frameloop="demand" */}
           <Lighting />
           <ScrollControls
             className={css.scrollControl}

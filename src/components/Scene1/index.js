@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import * as THREE from "three";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import { useSpring } from "@react-three/cannon";
 
 import css from "./Scene1.module.css";
 
 function Scene1() {
   function CreateBox({ boxColor, boxPosition, boxRotation }) {
     const [hovered, setHovered] = useState(false);
+    const box = useRef();
+
+    useFrame(() => {
+      box.current.rotation.y += 0.005;
+    });
 
     return (
       <mesh
+        ref={box}
         position={boxPosition}
         onPointerOver={() => {
           setHovered(true);

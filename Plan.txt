@@ -3,6 +3,7 @@ Look into Scroll Control- Orbit Controls do not affect scrolling velocity. (Came
 
 onHover, highlight cubes
 rotate all individual cubes on y axis
+    conflict with useSpring in R3Spring and R3Cannon ...
 
 Create and move the NavBar into the canvas
 Test fetching data in the canvas
