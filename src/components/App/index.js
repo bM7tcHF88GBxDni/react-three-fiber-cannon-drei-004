@@ -4,12 +4,15 @@ import { Canvas } from "@react-three/fiber";
 import { Html, Scroll, ScrollControls } from "@react-three/drei";
 import { OrbitControls } from "@react-three/drei";
 import TestReactComponent from "../TestReactComponent";
+import Lighting from "../Lighting";
 
 function App() {
   return (
     <>
       <div className={css.appContainer}>
         <Canvas className={css.scene1} frameloop="demand" pixelRatio={[1, 2]}>
+          <Lighting />
+          {/* <OrbitControls enableZoom={false} /> */}
           <ScrollControls
             className={css.scrollControl}
             pages={3} // Each page takes 100% of the height of the canvas
@@ -23,11 +26,6 @@ function App() {
                 <h1>react-three-fiber-cannon-drei-004</h1>
               </Html>
               <Scene1></Scene1>
-
-              <ambientLight intensity={0.5} />
-              <directionalLight position={[5, 10, 4]} intensity={0.2} />
-              <directionalLight position={[5, -10, -4]} intensity={0.1} />
-              {/* <OrbitControls enableZoom={false} /> */}
             </Scroll>
             <Scroll>
               <mesh position={[1, -1, 0]}>
