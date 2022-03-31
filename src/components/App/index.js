@@ -5,6 +5,7 @@ import { Html, Scroll, ScrollControls } from "@react-three/drei";
 import { OrbitControls } from "@react-three/drei";
 import TestReactComponent from "../TestReactComponent";
 import Lighting from "../Lighting";
+import Sphere from "../Sphere";
 
 function App() {
   return (
@@ -38,10 +39,7 @@ function App() {
                 this is between the third Scroll tags
                 <TestReactComponent></TestReactComponent>
               </Html>
-              <mesh position={[5, 0, 0]}>
-                <sphereBufferGeometry attach="geometry" />
-                <meshPhongMaterial attach="material" color="hotpink" />
-              </mesh>
+              <Sphere />
             </Scroll>
           </ScrollControls>
         </Canvas>
