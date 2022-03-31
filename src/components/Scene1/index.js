@@ -1,7 +1,5 @@
 import React, { useState, useRef } from "react";
-import * as THREE from "three";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import { useSpring } from "@react-three/cannon";
 
 import css from "./Scene1.module.css";

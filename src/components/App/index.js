@@ -38,6 +38,10 @@ function App() {
                 this is between the third Scroll tags
                 <TestReactComponent></TestReactComponent>
               </Html>
+              <mesh position={[5, 0, 0]}>
+                <sphereBufferGeometry attach="geometry" />
+                <meshPhongMaterial attach="material" color="hotpink" />
+              </mesh>
             </Scroll>
           </ScrollControls>
         </Canvas>

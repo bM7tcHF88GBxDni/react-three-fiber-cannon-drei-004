@@ -17,6 +17,15 @@ Test fetching data in the canvas
 Create a footer
 Perhaps Two 100vh pages, A scene Per Page
 
+Camera. Movement Test 1
+a React component (in Canvas, Html) is clicked on and the canvas camera moves to another position in the scene smoothly
+useThree() hook to get the canvas' camera position and quaternion, store these initial values
+Move the camera and lookAt the new object, store these destination position and quaternion values
+Reset position and quaternion to initial values
+.slerp to destination position and values in useFrame hook
+
+can also use react-spring to handle the transition between rotations or positions, but it seems to conflict with Cannon. Cannon also does not work with today's new release of Fiber :/
+
 Test. 2
 Create a css grid of 4 components
 onClick
