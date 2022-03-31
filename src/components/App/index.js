@@ -10,9 +10,14 @@ function App() {
   return (
     <>
       <div className={css.appContainer}>
-        <Canvas className={css.scene1} pixelRatio={[1, 2]}>
+        <Canvas
+          className={css.scene1}
+          pixelRatio={[1, 2]}
+          camera={{ position: [0, 0, 10] }}
+        >
           {/* frameloop="demand" */}
           <Lighting />
+          <OrbitControls enableZoom={false} />
           <ScrollControls
             className={css.scrollControl}
             pages={3} // Each page takes 100% of the height of the canvas
@@ -27,16 +32,7 @@ function App() {
               </Html>
               <Scene1></Scene1>
             </Scroll>
-            <Scroll>
-              <mesh position={[1, -1, 0]}>
-                <boxBufferGeometry attach="geometry" />
-                <meshLambertMaterial attach="material" color="lightpink" />
-              </mesh>
-              <mesh position={[-1, -1, 0]}>
-                <boxBufferGeometry attach="geometry" />
-                <meshLambertMaterial attach="material" color="lightgrey" />
-              </mesh>
-            </Scroll>
+            <Scroll></Scroll>
             <Scroll>
               <Html>
                 this is between the third Scroll tags

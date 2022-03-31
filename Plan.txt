@@ -1,11 +1,18 @@
 Things. to do:
 Look into Scroll Control- Orbit Controls do not affect scrolling velocity. (Camera always moves in the direction of Lightblue cube to Lightsalmon cube)
+Load in a large gltf scene and view how Orbit Controls will feel then.
+    Maybe add in a texture background
 
 onHover, highlight cubes
 rotate all individual cubes on y axis
     conflict with useSpring in R3Spring and R3Cannon ...
 
 Create and move the NavBar into the canvas
+Try pushing Html with r3cannon api.impulse 0, 0, 2
+
+Or create 3D Text and
+Try pushing Html with r3cannon api.impulse 0, 0, 2
+
 Test fetching data in the canvas
 Create a footer
 Perhaps Two 100vh pages, A scene Per Page
