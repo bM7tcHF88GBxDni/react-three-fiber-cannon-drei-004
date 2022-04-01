@@ -29,7 +29,7 @@ can also use react-spring to handle the transition between rotations or position
 Test. 2
 Create a css grid of 4 components
 onClick
-    Create a 3d object in that component
+    Create a 3d object in that componentd 
     Center 3d object at center of component
     Use r3cannon api.impulse 0, 0, 2 (or another library?)
 
