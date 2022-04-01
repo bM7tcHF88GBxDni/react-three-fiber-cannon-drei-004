@@ -24,6 +24,18 @@ Move the camera and lookAt the new object, store these destination position and 
 Reset position and quaternion to initial values
 .slerp to destination position and values in useFrame hook
 
+Using Matrix transformations to move and rotate the camera (https://threejs.org/docs/#manual/en/introduction/Matrix-transformations)
+save initial position and quaternion
+move camera to target object (this will be the center of/inside the object) and add new THREE.Vector3(2, 3, 3) to position camera away from object
+make camera lookAt target object
+save destination position and quaternion
+move camera back to initial position and quaternion
+    object.matrix.setRotationFromQuaternion( start_quaternion );
+    object.matrix.setPosition( start_position );
+useFrame 
+    lerp camera position to stored destination position
+    slerp camera quaternion to stored destination quaternion
+
 can also use react-spring to handle the transition between rotations or positions, but it seems to conflict with Cannon. Cannon also does not work with today's new release of Fiber :/
 
 Test. 2
