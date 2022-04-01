@@ -1,7 +1,7 @@
 # ThreeJS with React
 ## React Three Fiber, Drei, Cannon
 
-This project is currently a testing ground features to be used for my personal/portfolio website:
+This project is currently a testing ground for features to be used for my personal/portfolio website:
 
 - Animating meshes with useFrame
   - Using Events such as onClick and onPointerOver for interactivity
