@@ -7,39 +7,41 @@ function Sphere() {
   const sphere = useRef();
 
   function moveCamera(event) {
-    const initialPosition = state.camera.position;
-    const initialQuaternion = state.camera.quaternion;
-    console.log("sphere", sphere); //store the camera's matrix in the future
-
-    //const spherePosition = sphere.current.matrix.getPosition();
+    const initialCamPos = state.camera.position;
+    const initialCamQuaternion = state.camera.quaternion;
+    console.log("sphere", sphere); //store the camera's matrix in the future instead
 
     //storing the target sphere's global matrix
     const sphereMatrix = sphere.current.matrixWorld;
     console.log("sphere.current.matrixWorld", sphereMatrix);
 
-    //storing sphere's position (Vector3)
-    const positionFromSphereMatrix = new THREE.Vector3().setFromMatrixPosition(
+    //storing target sphere's position (Vector3)
+    const targetPosition = new THREE.Vector3().setFromMatrixPosition(
       sphereMatrix
     );
     //storing sphere's rotation (Quaternion)
-    const quaternionFromSphereMatrix =
-      new THREE.Quaternion().setFromRotationMatrix(sphereMatrix);
-
-    //console.log("spherePosition", spherePosition);
-    console.log("positionFromSphereMatrix", positionFromSphereMatrix);
-    console.log("quaternionFromSphereMatrix", quaternionFromSphereMatrix);
-
-    const sphereExternalCamPos = positionFromSphereMatrix.add(
-      new THREE.Vector3(2, 3, 3) //view sphere from its top right corner
+    const targetQuaternion = new THREE.Quaternion().setFromRotationMatrix(
+      sphereMatrix
     );
-    console.log("sphereExternalCamPos", sphereExternalCamPos);
+    console.log("targetPosition", targetPosition);
+    console.log("targetQuaternion", targetQuaternion);
 
-    /*     state.camera.position = viewSphereFromPosition;
-    const destinationPosition = state.camera.position;
+    //move camera from center(inside) of sphere to view sphere from outside
+    const targetExternalCamPos = targetPosition.add(
+      new THREE.Vector3(0, 0, -15)
+    );
+    console.log("targetExternalCamPos", targetExternalCamPos);
 
+    //move camera to target sphere's external cam location
+    state.camera.position.set(targetExternalCamPos);
+    //rotate camera to face target sphere
     state.camera.lookAt(sphere);
-    const destinationQuaternion = state.camera.quaternion;
-    console.log("destinationQuaternion", destinationQuaternion); */
+
+    //store camera quaternion
+    const destinationQuaternion = new THREE.Quaternion().setFromRotationMatrix(
+      state.camera.matrixWorld
+    );
+    console.log("destinationQuaternion", destinationQuaternion);
   }
 
   return (
