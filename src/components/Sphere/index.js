@@ -19,23 +19,25 @@ function Sphere() {
     const targetPosition = new THREE.Vector3().setFromMatrixPosition(
       sphereMatrix
     );
+
+    /* Do Not Need Targets Quaternion
     //storing sphere's rotation (Quaternion)
     const targetQuaternion = new THREE.Quaternion().setFromRotationMatrix(
       sphereMatrix
     );
     console.log("targetPosition", targetPosition);
-    console.log("targetQuaternion", targetQuaternion);
+    */
 
     //move camera from center(inside) of sphere to view sphere from outside
     const targetExternalCamPos = targetPosition.add(
-      new THREE.Vector3(0, 0, -15)
+      new THREE.Vector3(0, 0, 10)
     );
     console.log("targetExternalCamPos", targetExternalCamPos);
 
     //move camera to target sphere's external cam location
-    state.camera.position.set(targetExternalCamPos);
+    state.camera.position.copy(targetExternalCamPos);
     //rotate camera to face target sphere
-    state.camera.lookAt(sphere);
+    state.camera.lookAt(sphere.current.position);
 
     //store camera quaternion
     const destinationQuaternion = new THREE.Quaternion().setFromRotationMatrix(
