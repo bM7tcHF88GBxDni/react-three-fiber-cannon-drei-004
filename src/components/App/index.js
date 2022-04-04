@@ -18,7 +18,7 @@ function App() {
         >
           {/* frameloop="demand" */}
           <Lighting />
-          <OrbitControls enableZoom={false} />
+          {/* <OrbitControls enableZoom={false} /> */}
           <ScrollControls
             className={css.scrollControl}
             pages={3} // Each page takes 100% of the height of the canvas

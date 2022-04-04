@@ -29,9 +29,7 @@ function Sphere() {
     */
 
     //move camera from center(inside) of sphere to view sphere from outside
-    const targetExternalCamPos = targetPosition.add(
-      new THREE.Vector3(0, 0, 10)
-    );
+    const targetExternalCamPos = targetPosition.add(new THREE.Vector3(5, 2, 5));
     console.log("targetExternalCamPos", targetExternalCamPos);
 
     //move camera to target sphere's external cam location
