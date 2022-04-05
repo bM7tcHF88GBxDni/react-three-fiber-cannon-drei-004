@@ -1,14 +1,29 @@
-import React, { useRef } from "react";
-import { useThree } from "react-three-fiber";
+import React, { useRef, useState } from "react";
+import { useThree, useFrame } from "react-three-fiber";
 import * as THREE from "three";
 
 function Sphere() {
   const state = useThree();
   const sphere = useRef();
+  const [data, setData] = useState(null);
+
+  useFrame((state, dt) => {
+    // if (data) {
+    //   state.camera.position.lerp(
+    //     data.targetExternalCamPos,
+    //     THREE.MathUtils.damp(0, 1, 1, dt)
+    //   );
+    //   state.camera.quaternion.slerp(
+    //     data.targetQuaternion,
+    //     THREE.MathUtils.damp(0, 1, 1, dt)
+    //   );
+    // }
+  });
 
   function moveCamera(event) {
     const initialCamPos = state.camera.position;
     const initialCamQuaternion = state.camera.quaternion;
+    console.log({ initialCamPos, initialCamQuaternion });
     console.log("sphere", sphere); //store the camera's matrix in the future instead
 
     //storing the target sphere's global matrix
@@ -20,14 +35,6 @@ function Sphere() {
       sphereMatrix
     );
 
-    /* Do Not Need Targets Quaternion
-    //storing sphere's rotation (Quaternion)
-    const targetQuaternion = new THREE.Quaternion().setFromRotationMatrix(
-      sphereMatrix
-    );
-    console.log("targetPosition", targetPosition);
-    */
-
     //move camera from center(inside) of sphere to view sphere from outside
     const targetExternalCamPos = targetPosition.add(new THREE.Vector3(5, 2, 5));
     console.log("targetExternalCamPos", targetExternalCamPos);
@@ -38,10 +45,28 @@ function Sphere() {
     state.camera.lookAt(sphere.current.position);
 
     //store camera quaternion
-    const destinationQuaternion = new THREE.Quaternion().setFromRotationMatrix(
+    const targetQuaternion = new THREE.Quaternion().setFromRotationMatrix(
       state.camera.matrixWorld
     );
-    console.log("destinationQuaternion", destinationQuaternion);
+    console.log("targetQuaternion", targetQuaternion);
+
+    //store all values in state
+    setData({
+      initialCamPos,
+      initialCamQuaternion,
+      sphereMatrix,
+      targetPosition,
+      targetExternalCamPos,
+      targetQuaternion,
+    });
+
+    //initialCamPos seems to use current/updated co-ords, so the camera is not being "reset"
+    //this is why lerping position shows no change
+    //this is why the quaternion being applied to the rotation is off
+    //move camera back
+    state.camera.position.copy(initialCamPos);
+    //rotate camera back
+    state.camera.setRotationFromQuaternion(initialCamQuaternion);
   }
 
   return (
