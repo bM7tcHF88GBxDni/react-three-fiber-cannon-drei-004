@@ -23,21 +23,12 @@ function Sphere() {
   function moveCamera(event) {
     event.stopPropagation();
 
-    const initialCamPos = new THREE.Vector3(
-      state.camera.position.x,
-      state.camera.position.y,
-      state.camera.position.z
-    );
+    const initialCamPos = state.camera.position.clone();
     console.log("initialCamPos", initialCamPos);
 
-    const initialCamQuaternion = new THREE.Quaternion(
-      state.camera.quaternion.x,
-      state.camera.quaternion.y,
-      state.camera.quaternion.z,
-      state.camera.quaternion.w
-    );
+    const initialCamQuaternion = state.camera.quaternion.clone();
     console.log("initialCamQuaternion", initialCamQuaternion);
-    // console.log("sphere", sphere); //could we use camera.quaternion.matrixWorld for this instead?
+    // console.log("sphere", sphere);
 
     //storing the target sphere's global matrix
     const sphereMatrix = sphere.current.matrixWorld;
