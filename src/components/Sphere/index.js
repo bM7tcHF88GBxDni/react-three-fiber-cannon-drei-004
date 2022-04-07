@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useThree, useFrame } from "react-three-fiber";
+import { useThree, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 function Sphere() {
@@ -21,14 +21,27 @@ function Sphere() {
   });
 
   function moveCamera(event) {
-    const initialCamPos = state.camera.position;
-    const initialCamQuaternion = state.camera.quaternion;
-    console.log({ initialCamPos, initialCamQuaternion });
-    console.log("sphere", sphere); //store the camera's matrix in the future instead
+    event.stopPropagation();
+
+    const initialCamPos = new THREE.Vector3(
+      state.camera.position.x,
+      state.camera.position.y,
+      state.camera.position.z
+    );
+    console.log("initialCamPos", initialCamPos);
+
+    const initialCamQuaternion = new THREE.Quaternion(
+      state.camera.quaternion.x,
+      state.camera.quaternion.y,
+      state.camera.quaternion.z,
+      state.camera.quaternion.w
+    );
+    console.log("initialCamQuaternion", initialCamQuaternion);
+    // console.log("sphere", sphere); //could we use camera.quaternion.matrixWorld for this instead?
 
     //storing the target sphere's global matrix
     const sphereMatrix = sphere.current.matrixWorld;
-    console.log("sphere.current.matrixWorld", sphereMatrix);
+    // console.log("sphere.current.matrixWorld", sphereMatrix);
 
     //storing target sphere's position (Vector3)
     const targetPosition = new THREE.Vector3().setFromMatrixPosition(
@@ -37,7 +50,7 @@ function Sphere() {
 
     //move camera from center(inside) of sphere to view sphere from outside
     const targetExternalCamPos = targetPosition.add(new THREE.Vector3(5, 2, 5));
-    console.log("targetExternalCamPos", targetExternalCamPos);
+    // console.log("targetExternalCamPos", targetExternalCamPos);
 
     //move camera to target sphere's external cam location
     state.camera.position.copy(targetExternalCamPos);
@@ -48,8 +61,9 @@ function Sphere() {
     const targetQuaternion = new THREE.Quaternion().setFromRotationMatrix(
       state.camera.matrixWorld
     );
-    console.log("targetQuaternion", targetQuaternion);
+    // console.log("targetQuaternion", targetQuaternion);
 
+    //store all values in state
     //store all values in state
     setData({
       initialCamPos,
@@ -59,10 +73,10 @@ function Sphere() {
       targetExternalCamPos,
       targetQuaternion,
     });
-
     //initialCamPos seems to use current/updated co-ords, so the camera is not being "reset"
     //this is why lerping position shows no change
     //this is why the quaternion being applied to the rotation is off
+
     //move camera back
     state.camera.position.copy(initialCamPos);
     //rotate camera back
