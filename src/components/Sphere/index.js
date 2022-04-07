@@ -24,20 +24,15 @@ function Sphere() {
     event.stopPropagation();
 
     const initialCamPos = state.camera.position.clone();
-    console.log("initialCamPos", initialCamPos);
+    // console.log("initialCamPos", initialCamPos);
 
     const initialCamQuaternion = state.camera.quaternion.clone();
-    console.log("initialCamQuaternion", initialCamQuaternion);
+    // console.log("initialCamQuaternion", initialCamQuaternion);
+
     // console.log("sphere", sphere);
 
-    //storing the target sphere's global matrix
-    const sphereMatrix = sphere.current.matrixWorld;
-    // console.log("sphere.current.matrixWorld", sphereMatrix);
-
     //storing target sphere's position (Vector3)
-    const targetPosition = new THREE.Vector3().setFromMatrixPosition(
-      sphereMatrix
-    );
+    const targetPosition = sphere.current.position.clone();
 
     //move camera from center(inside) of sphere to view sphere from outside
     const targetExternalCamPos = targetPosition.add(new THREE.Vector3(5, 2, 5));
@@ -49,9 +44,8 @@ function Sphere() {
     state.camera.lookAt(sphere.current.position);
 
     //store camera quaternion
-    const targetQuaternion = new THREE.Quaternion().setFromRotationMatrix(
-      state.camera.matrixWorld
-    );
+    const targetQuaternion = state.camera.quaternion.clone();
+
     // console.log("targetQuaternion", targetQuaternion);
 
     //store all values in state
@@ -59,10 +53,9 @@ function Sphere() {
     setData({
       initialCamPos,
       initialCamQuaternion,
-      sphereMatrix,
       targetPosition,
-      targetExternalCamPos,
       targetQuaternion,
+      targetExternalCamPos,
     });
     //initialCamPos seems to use current/updated co-ords, so the camera is not being "reset"
     //this is why lerping position shows no change
