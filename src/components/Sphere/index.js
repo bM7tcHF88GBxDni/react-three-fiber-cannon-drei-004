@@ -6,22 +6,38 @@ function Sphere() {
   const state = useThree();
   const sphere = useRef();
   const [data, setData] = useState(null);
+  const [animate, setAnimate] = useState(false);
 
   useFrame((state, dt) => {
-    // if (data) {
-    //   state.camera.position.lerp(
-    //     data.targetExternalCamPos,
-    //     THREE.MathUtils.damp(0, 1, 1, dt)
-    //   );
-    //   state.camera.quaternion.slerp(
-    //     data.targetQuaternion,
-    //     THREE.MathUtils.damp(0, 1, 1, dt)
-    //   );
-    // }
+    //this is running every frame, doesn't seem ideal.
+    if (animate) {
+      //camera moves to new position.
+      state.camera.position.lerp(
+        data.targetExternalCamPos,
+        THREE.MathUtils.damp(0, 1, 6, dt)
+      );
+      state.camera.quaternion.slerp(
+        data.targetQuaternion,
+        THREE.MathUtils.damp(0, 1, 6, dt)
+      );
+    } else {
+      //camera moves back to initial position.
+      state.camera.position.lerp(
+        data.initialCamPos,
+        THREE.MathUtils.damp(0, 1, 6, dt)
+      );
+      state.camera.quaternion.slerp(
+        data.initialCamQuaternion,
+        THREE.MathUtils.damp(0, 1, 6, dt)
+      );
+    }
   });
 
   function moveCamera(event) {
     event.stopPropagation();
+
+    //need to replace sphere reference with event.object
+    //refactor code to remove animate state. useFrame doesn't need a conditional- it should always move towards a target, and we should update these global target variables.
 
     const initialCamPos = state.camera.position.clone();
     // console.log("initialCamPos", initialCamPos);
@@ -45,26 +61,26 @@ function Sphere() {
 
     //store camera quaternion
     const targetQuaternion = state.camera.quaternion.clone();
-
     // console.log("targetQuaternion", targetQuaternion);
 
-    //store all values in state
-    //store all values in state
-    setData({
-      initialCamPos,
-      initialCamQuaternion,
-      targetPosition,
-      targetQuaternion,
-      targetExternalCamPos,
-    });
-    //initialCamPos seems to use current/updated co-ords, so the camera is not being "reset"
-    //this is why lerping position shows no change
-    //this is why the quaternion being applied to the rotation is off
+    //if setData is null(first onClick execution) store all values in state
+    if (data === null) {
+      setData({
+        initialCamPos,
+        initialCamQuaternion,
+        targetPosition,
+        targetQuaternion,
+        targetExternalCamPos,
+      });
+    }
 
     //move camera back
     state.camera.position.copy(initialCamPos);
     //rotate camera back
     state.camera.setRotationFromQuaternion(initialCamQuaternion);
+
+    //flag that useFrame is constantly watching
+    setAnimate(!animate);
   }
 
   return (
