@@ -6,30 +6,32 @@ function Sphere() {
   const state = useThree();
   const sphere = useRef();
   const [data, setData] = useState(null);
-  const [animate, setAnimate] = useState(false);
+  const [animate, setAnimate] = useState(null);
 
   useFrame((state, dt) => {
     //this is running every frame, doesn't seem ideal.
-    if (animate) {
-      //camera moves to new position.
-      state.camera.position.lerp(
-        data.targetExternalCamPos,
-        THREE.MathUtils.damp(0, 1, 6, dt)
-      );
-      state.camera.quaternion.slerp(
-        data.targetQuaternion,
-        THREE.MathUtils.damp(0, 1, 6, dt)
-      );
-    } else {
-      //camera moves back to initial position.
-      state.camera.position.lerp(
-        data.initialCamPos,
-        THREE.MathUtils.damp(0, 1, 6, dt)
-      );
-      state.camera.quaternion.slerp(
-        data.initialCamQuaternion,
-        THREE.MathUtils.damp(0, 1, 6, dt)
-      );
+    if (animate !== null) {
+      if (animate) {
+        //camera moves to new position.
+        state.camera.position.lerp(
+          data.targetExternalCamPos,
+          THREE.MathUtils.damp(0, 1, 6, dt)
+        );
+        state.camera.quaternion.slerp(
+          data.targetQuaternion,
+          THREE.MathUtils.damp(0, 1, 6, dt)
+        );
+      } else {
+        //camera moves back to initial position.
+        state.camera.position.lerp(
+          data.initialCamPos,
+          THREE.MathUtils.damp(0, 1, 6, dt)
+        );
+        state.camera.quaternion.slerp(
+          data.initialCamQuaternion,
+          THREE.MathUtils.damp(0, 1, 6, dt)
+        );
+      }
     }
   });
 
@@ -38,7 +40,16 @@ function Sphere() {
 
     //need to replace sphere reference with event.object
     //refactor code to remove animate state. useFrame doesn't need a conditional- it should always move towards a target, and we should update these global target variables.
-
+    //drei Text component to place physically in the world
+    /*
+    refactor the component and behaviour hierarchy so this logic can be reused properly in a personal site
+      highest level component
+        holds a state of target variables
+        the useFrame hook that constantly moves camera toward target
+      interactive child components 
+        pass in function to update target variables as props
+        these components should store their external cam co-ordinates and the lookAt co-ordinates can be passed to prop function above using event.object etc
+    */
     const initialCamPos = state.camera.position.clone();
     // console.log("initialCamPos", initialCamPos);
 
