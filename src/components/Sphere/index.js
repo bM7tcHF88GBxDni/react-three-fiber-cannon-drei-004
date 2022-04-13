@@ -4,7 +4,6 @@ import * as THREE from "three";
 
 function Sphere() {
   const state = useThree();
-  const sphere = useRef();
   const [data, setData] = useState(null);
   const [animate, setAnimate] = useState(null);
 
@@ -38,7 +37,6 @@ function Sphere() {
   function moveCamera(event) {
     event.stopPropagation();
 
-    //need to replace sphere reference with event.object
     //refactor code to remove animate state. useFrame doesn't need a conditional- it should always move towards a target, and we should update these global target variables.
     //drei Text component to place physically in the world
     /*
@@ -59,7 +57,7 @@ function Sphere() {
     // console.log("sphere", sphere);
 
     //storing target sphere's position (Vector3)
-    const targetPosition = sphere.current.position.clone();
+    const targetPosition = event.object.position.clone();
 
     //move camera from center(inside) of sphere to view sphere from outside
     const targetExternalCamPos = targetPosition.add(new THREE.Vector3(5, 2, 5));
@@ -68,7 +66,7 @@ function Sphere() {
     //move camera to target sphere's external cam location
     state.camera.position.copy(targetExternalCamPos);
     //rotate camera to face target sphere
-    state.camera.lookAt(sphere.current.position);
+    state.camera.lookAt(event.object.position);
 
     //store camera quaternion
     const targetQuaternion = state.camera.quaternion.clone();
@@ -96,7 +94,7 @@ function Sphere() {
 
   return (
     <>
-      <mesh ref={sphere} position={[5, 0, 0]} onClick={moveCamera}>
+      <mesh position={[5, 0, 0]} onClick={moveCamera}>
         <sphereBufferGeometry attach="geometry" />
         <meshPhongMaterial attach="material" color="hotpink" />
       </mesh>
