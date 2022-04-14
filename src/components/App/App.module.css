@@ -1,19 +1,6 @@
-.appContainer {
-  text-align: center;
-  background-color: rgba(0, 255, 170, 0.233);
-
-  margin: 0;
-  width: 100vw;
-  height: 100vh;
-}
-
 h1 {
   border: 0.15em solid rgb(0, 0, 0);
   border-radius: 0.45em;
-}
-
-.scene1 {
-  background-color: lightslategrey;
 }
 
 .scrollControl {
