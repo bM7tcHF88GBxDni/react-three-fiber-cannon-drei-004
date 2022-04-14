@@ -4,42 +4,42 @@ import { useSpring } from "@react-three/cannon";
 
 import css from "./Scene1.module.css";
 
-function Scene1() {
-  function CreateBox({ boxColor, boxPosition, animate, boxScale }) {
-    const [hovered, setHovered] = useState(false);
-    const box = useRef();
+function CreateBox({ boxColor, boxPosition, animate, boxScale }) {
+  const [hovered, setHovered] = useState(false);
+  const box = useRef();
 
-    /*     function getRandomArbitrary(min, max) {
-      return Math.random() * (max - min) + min;
-    }
-
-    const animateSpeed = getRandomArbitrary(0.0044, 0.0066); */
-
-    useFrame(() => {
-      if (animate) box.current.rotation.y += 0.005;
-    });
-
-    return (
-      <mesh
-        ref={box}
-        position={boxPosition}
-        onPointerOver={() => {
-          setHovered(true);
-        }}
-        onPointerOut={() => {
-          setHovered(false);
-        }}
-        scale={boxScale}
-      >
-        <boxBufferGeometry attach="geometry" />
-        <meshPhongMaterial
-          attach="material"
-          color={hovered ? "cyan" : boxColor}
-        />
-      </mesh>
-    );
+  /*     function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
   }
 
+  const animateSpeed = getRandomArbitrary(0.0044, 0.0066); */
+
+  useFrame(() => {
+    if (animate) box.current.rotation.y += 0.005;
+  });
+
+  return (
+    <mesh
+      ref={box}
+      position={boxPosition}
+      onPointerOver={() => {
+        setHovered(true);
+      }}
+      onPointerOut={() => {
+        setHovered(false);
+      }}
+      scale={boxScale}
+    >
+      <boxBufferGeometry attach="geometry" />
+      <meshPhongMaterial
+        attach="material"
+        color={hovered ? "cyan" : boxColor}
+      />
+    </mesh>
+  );
+}
+
+function Scene1() {
   return (
     <>
       {/* 3x3 Cube Grid */}
