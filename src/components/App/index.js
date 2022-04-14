@@ -1,6 +1,6 @@
 import { useState } from "react";
 import * as THREE from "three";
-import { useThree, useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { Html, Scroll, ScrollControls, OrbitControls } from "@react-three/drei";
 
 import css from "./App.module.css";
@@ -8,27 +8,30 @@ import Lighting from "../Lighting";
 import Scene1 from "../Scene1";
 import Sphere from "../Sphere";
 import TestReactComponent from "../TestReactComponent";
+import Torus from "../Torus";
 
 function App() {
   const [target, setTarget] = useState({
-    position: new THREE.Vector3(0, 0, 10),
-    quaternion: new THREE.Quaternion(),
+    position: new THREE.Vector3(),
+    externalPosition: new THREE.Vector3(0, 0, 10),
   });
 
-  // const state = useThree();
+  useFrame((state, dt) => {
+    //camera moves to new position
+    state.camera.position.lerp(
+      target.externalPosition,
+      THREE.MathUtils.damp(0, 1, 6, dt)
+    );
+    //camera rotates to new position
+    state.camera.lookAt(target.position);
+  });
 
-  // useFrame((state, dt) => {
-  //   //camera moves to new position
-  //   state.camera.position.lerp(
-  //     target.position,
-  //     THREE.MathUtils.damp(0, 1, 6, dt)
-  //   );
-  //   //camera rotates to new position
-  //   state.camera.quaternion.slerp(
-  //     target.quaternion,
-  //     THREE.MathUtils.damp(0, 1, 6, dt)
-  //   );
-  // });
+  function updateTarget(position, externalPosition) {
+    setTarget({
+      position,
+      externalPosition,
+    });
+  }
 
   return (
     <>
@@ -46,6 +49,7 @@ function App() {
           <Html>
             <h1>react-three-fiber-cannon-drei-004</h1>
           </Html>
+          <Torus updateTarget={updateTarget}></Torus>
           <Scene1></Scene1>
         </Scroll>
         <Scroll></Scroll>
@@ -54,7 +58,7 @@ function App() {
             this is between the third Scroll tags
             <TestReactComponent></TestReactComponent>
           </Html>
-          <Sphere />
+          {/* <Sphere /> */}
         </Scroll>
       </ScrollControls>
     </>
