@@ -8,6 +8,9 @@ Does not work inside Fiber Html elements
 
 Test. 3 - Cannon ES Impulse with 3D Text
 Use Cannon API to add impulse?
+    Add a cannon useBox collider around the Text
+    Add a giant Plane underneath so we can see it land.
+    Add impulse on click. Direction is ... Z axis?
 Double render - Outline, normal Text, impulse normal Text?
 
 Test. 4 - Float, Cam Shake

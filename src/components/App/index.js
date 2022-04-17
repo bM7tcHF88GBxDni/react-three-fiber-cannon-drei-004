@@ -2,6 +2,7 @@ import { useState } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { Html, Scroll, ScrollControls, OrbitControls } from "@react-three/drei";
+import { Physics } from "@react-three/cannon";
 
 import css from "./App.module.css";
 import Lighting from "../Lighting";
@@ -46,22 +47,24 @@ function App() {
         horizontal={true} // Can also scroll horizontally (default: false)
         infinite={false} // Can also scroll infinitely (default: false)
       >
-        <Scroll>
-          <Html>
-            <h1>react-three-fiber-cannon-drei-004</h1>
-          </Html>
-          <DroikaText></DroikaText>
-          <Torus updateTarget={updateTarget}></Torus>
-          <Scene1></Scene1>
-        </Scroll>
-        <Scroll></Scroll>
-        <Scroll>
-          <Html>
-            this is between the third Scroll tags
-            <TestReactComponent></TestReactComponent>
-          </Html>
-          {/* <Sphere /> */}
-        </Scroll>
+        <Physics allowSleep>
+          <Scroll>
+            <Html>
+              <h1>react-three-fiber-cannon-drei-004</h1>
+            </Html>
+            <DroikaText></DroikaText>
+            <Torus updateTarget={updateTarget}></Torus>
+            <Scene1></Scene1>
+          </Scroll>
+          <Scroll></Scroll>
+          <Scroll>
+            <Html>
+              this is between the third Scroll tags
+              <TestReactComponent></TestReactComponent>
+            </Html>
+            {/* <Sphere /> */}
+          </Scroll>
+        </Physics>
       </ScrollControls>
     </>
   );
