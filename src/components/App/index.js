@@ -9,6 +9,7 @@ import Scene1 from "../Scene1";
 import Sphere from "../Sphere";
 import TestReactComponent from "../TestReactComponent";
 import Torus from "../Torus";
+import DroikaText from "../Text";
 
 function App() {
   const [target, setTarget] = useState({
@@ -49,6 +50,7 @@ function App() {
           <Html>
             <h1>react-three-fiber-cannon-drei-004</h1>
           </Html>
+          <DroikaText></DroikaText>
           <Torus updateTarget={updateTarget}></Torus>
           <Scene1></Scene1>
         </Scroll>
