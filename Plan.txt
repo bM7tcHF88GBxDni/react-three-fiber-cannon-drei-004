@@ -1,23 +1,37 @@
 Things. to do:
-Look into Scroll Control- Orbit Controls do not affect scrolling velocity. (Camera always moves in the direction of Lightblue cube to Lightsalmon cube)
 Load in a large gltf scene and view how Orbit Controls will feel then.
     Maybe add in a texture background
 
+Test. 2 - 3D Text https://drei.pmnd.rs/?path=/story/abstractions-text--text-st
+Place Drei's Droika Text component physically in the world
+Does not work inside Fiber Html elements
+
+Test. 3 - Cannon ES Impulse with 3D Text
+Use Cannon API to add impulse?
+Double render - Outline, normal Text, impulse normal Text?
+
+Test. 4 - Float, Cam Shake
+Float https://github.com/pmndrs/drei#float
+Staging CameraShake https://drei.pmnd.rs/?path=/story/staging-camerashake--camera-shake-with-orbit-controls-story
+
+Test. 5 - Environment (HDRI Haven)
+
+Page. Ideas Draft
+Page 1 - slowly rotating bonfire from DS
+Page 2
+- Droika text CI/CD
+- Made from grouped block "bricks", some of which can be pushed over
+Page 3 - normal React page
+
+One scroll should scroll whole page
+Little dot marker showing how many pages
+
+Highlight. Objects: DONE
 onHover, highlight cubes
 rotate all individual cubes on y axis
     conflict with useSpring in R3Spring and R3Cannon ...
-
-Create and move the NavBar into the canvas
-Try pushing Html with r3cannon api.impulse 0, 0, 2
-
-Or create 3D Text and
-Try pushing Html with r3cannon api.impulse 0, 0, 2
-
-Test fetching data in the canvas
-Create a footer
-Perhaps Two 100vh pages, A scene Per Page
-
-Camera. Movement Test 1
+    
+Camera. Movement Test 1: DONE
 a React component (in Canvas, Html) is clicked on and the canvas camera moves to another position in the scene smoothly
 useThree() hook to get the canvas' camera position and quaternion, store these initial values
 Move the camera and lookAt the new object, store these destination position and quaternion values
@@ -38,19 +52,12 @@ useFrame
 
 can also use react-spring to handle the transition between rotations or positions, but it seems to conflict with Cannon. Cannon also does not work with today's new release of Fiber :/
 
-Test. 2
-Create a css grid of 4 components
-onClick
-    Create a 3d object in that componentd 
-    Center 3d object at center of component
-    Use r3cannon api.impulse 0, 0, 2 (or another library?)
-
-Page. Ideas Draft
-Page 1 - slowly rotating bonfire from DS
-Page 2
-- Droika text CI/CD
-- Made from grouped block "bricks", some of which can be pushed over
-Page 3 - normal React page
-
-One scroll should scroll whole page
-Little dot marker showing how many pages
+Camera. Movement v2: DONE
+refactor code to remove animate state. useFrame doesn't need a conditional- it should always move towards a target, and we should update these global target variables.
+refactor the component and behaviour hierarchy so this logic can be reused properly in a personal site
+    highest level component
+    holds a state of target variables
+    the useFrame hook that constantly moves camera toward target
+    interactive child components 
+    pass in function to update target variables as props
+    these components should store their external cam co-ordinates and the lookAt co-ordinates can be passed to prop function above using event.object etc

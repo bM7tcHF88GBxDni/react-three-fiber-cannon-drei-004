@@ -37,17 +37,6 @@ function Sphere() {
   function moveCamera(event) {
     event.stopPropagation();
 
-    //refactor code to remove animate state. useFrame doesn't need a conditional- it should always move towards a target, and we should update these global target variables.
-    //drei Text component to place physically in the world
-    /*
-    refactor the component and behaviour hierarchy so this logic can be reused properly in a personal site
-      highest level component
-        holds a state of target variables
-        the useFrame hook that constantly moves camera toward target
-      interactive child components 
-        pass in function to update target variables as props
-        these components should store their external cam co-ordinates and the lookAt co-ordinates can be passed to prop function above using event.object etc
-    */
     const initialCamPos = state.camera.position.clone();
     // console.log("initialCamPos", initialCamPos);
 
