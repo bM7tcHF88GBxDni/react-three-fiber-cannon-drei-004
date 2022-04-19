@@ -12,6 +12,7 @@ import TestReactComponent from "../TestReactComponent";
 import Torus from "../Torus";
 import DroikaText from "../Text";
 import RelativeImpulseBox from "../RelativeImpulseBox";
+import FloatingComponent from "../FloatingComponent";
 
 function App() {
   const [target, setTarget] = useState({
@@ -65,6 +66,7 @@ function App() {
               <TestReactComponent></TestReactComponent>
             </Html>
             {/* <Sphere /> */}
+            <FloatingComponent></FloatingComponent>
           </Scroll>
         </Physics>
       </ScrollControls>
