@@ -11,6 +11,7 @@ import Sphere from "../Sphere";
 import TestReactComponent from "../TestReactComponent";
 import Torus from "../Torus";
 import DroikaText from "../Text";
+import RelativeImpulseBox from "../RelativeImpulseBox";
 
 function App() {
   const [target, setTarget] = useState({
@@ -47,6 +48,7 @@ function App() {
         horizontal={true} // Can also scroll horizontally (default: false)
         infinite={false} // Can also scroll infinitely (default: false)
       >
+        <RelativeImpulseBox></RelativeImpulseBox>
         <Physics allowSleep>
           <Scroll>
             <Html>
