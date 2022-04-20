@@ -40,6 +40,7 @@ function PhyBox(props) {
         // console.log("deltaPosition", deltaPosition);
         // console.log("relativeClickPos", relativeClickPos);
 
+        //change first parameter to be the normal vector for directional impulse
         api.applyImpulse([0, 5, 0], relativeClickPos);
       }}
     >

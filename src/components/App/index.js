@@ -1,6 +1,6 @@
 import { useState } from "react";
 import * as THREE from "three";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { Html, Scroll, ScrollControls, OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/cannon";
 
@@ -16,25 +16,57 @@ import FloatingComponent from "../FloatingComponent";
 
 function App() {
   const [target, setTarget] = useState({
+    initialPosition: new THREE.Vector3(),
+    initialQuaternion: new THREE.Quaternion(),
     position: new THREE.Vector3(),
     externalPosition: new THREE.Vector3(0, 0, 10),
+    quaternion: new THREE.Quaternion(),
   });
 
-  useFrame((state, dt) => {
+  const state = useThree();
+
+  useFrame((st, dt) => {
     //camera moves to new position
-    state.camera.position.lerp(
+    st.camera.position.lerp(
       target.externalPosition,
-      THREE.MathUtils.damp(0, 1, 6, dt)
+      THREE.MathUtils.damp(0, 1, 2, dt)
     );
     //camera rotates to new position
-    state.camera.lookAt(target.position);
+    st.camera.quaternion.slerp(
+      target.quaternion,
+      THREE.MathUtils.damp(0, 1, 2, dt)
+    );
   });
 
   function updateTarget(position, externalPosition) {
+    const initialPosition = state.camera.position.clone();
+    // console.log("initialPosition", initialPosition);
+
+    const initialQuaternion = state.camera.quaternion.clone();
+    // console.log("initialQuaternion", initialQuaternion);
+
+    //move camera to target sphere's external cam location
+    state.camera.position.copy(externalPosition);
+    //rotate camera to face target sphere
+    state.camera.lookAt(position);
+
+    //store camera quaternion
+    const quaternion = state.camera.quaternion.clone();
+    // console.log("quaternion", quaternion);
+
+    //if setData is null(first onClick execution) store all values in state
     setTarget({
+      initialPosition,
+      initialQuaternion,
       position,
       externalPosition,
+      quaternion,
     });
+
+    //move camera back
+    state.camera.position.copy(initialPosition);
+    //rotate camera back
+    state.camera.setRotationFromQuaternion(initialQuaternion);
   }
 
   return (
