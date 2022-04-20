@@ -11,12 +11,14 @@ function FloatingComponent() {
     >
       <mesh position={[8, 0, -4]}>
         <torusKnotGeometry
-          radius={10}
-          tube={2.5}
-          tubularSegments={30}
-          radialSegments={8}
-          p={1}
-          q={6}
+          args={[
+            10, //radius
+            2, //tube
+            30, //tubularSegments
+            8, //radialSegments
+            1, //p
+            6, //q
+          ]}
         />
         <meshPhongMaterial attach="material">
           <GradientTexture
