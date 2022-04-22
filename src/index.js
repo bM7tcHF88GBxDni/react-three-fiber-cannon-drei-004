@@ -11,7 +11,7 @@ const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(
   <div className={css.appContainer}>
-    <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 50] }}>
+    <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 20] }}>
       <App></App>
     </Canvas>
   </div>
