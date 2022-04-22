@@ -13,6 +13,7 @@ import Torus from "../Torus";
 import DroikaText from "../Text";
 import RelativeImpulseBox from "../RelativeImpulseBox";
 import FloatingComponent from "../FloatingComponent";
+import ShipModel from "../ShipModel";
 
 function App() {
   const [target, setTarget] = useState({
@@ -25,18 +26,18 @@ function App() {
 
   const state = useThree();
 
-  useFrame((st, dt) => {
-    //camera moves to new position
-    st.camera.position.lerp(
-      target.externalPosition,
-      THREE.MathUtils.damp(0, 1, 2, dt)
-    );
-    //camera rotates to new position
-    st.camera.quaternion.slerp(
-      target.quaternion,
-      THREE.MathUtils.damp(0, 1, 2, dt)
-    );
-  });
+  // useFrame((st, dt) => {
+  //   //camera moves to new position
+  //   st.camera.position.lerp(
+  //     target.externalPosition,
+  //     THREE.MathUtils.damp(0, 1, 2, dt)
+  //   );
+  //   //camera rotates to new position
+  //   st.camera.quaternion.slerp(
+  //     target.quaternion,
+  //     THREE.MathUtils.damp(0, 1, 2, dt)
+  //   );
+  // });
 
   function updateTarget(position, externalPosition) {
     const initialPosition = state.camera.position.clone();
@@ -73,6 +74,9 @@ function App() {
     <>
       <Lighting />
       {/* <OrbitControls enableZoom={false} /> */}
+      <ShipModel></ShipModel>
+      <OrbitControls></OrbitControls>
+
       <ScrollControls
         className={css.scrollControl}
         pages={3} // Each page takes 100% of the height of the canvas
@@ -97,7 +101,7 @@ function App() {
               this is between the third Scroll tags
               <TestReactComponent></TestReactComponent>
             </Html>
-            {/* <Sphere /> */}
+            {/* <Sphere />  */}
             <FloatingComponent></FloatingComponent>
           </Scroll>
         </Physics>
