@@ -17,6 +17,8 @@ Test. 4 - Float, Cam Shake
 Float https://github.com/pmndrs/drei#float
 Staging CameraShake https://drei.pmnd.rs/?path=/story/staging-camerashake--camera-shake-with-orbit-controls-story
 
+Look into using tween to animate rotation on Z axis and transformations along x axis
+
 Test. 5 - Environment (HDRI Haven)
 
 Page. Ideas Draft
