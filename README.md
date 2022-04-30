@@ -1,5 +1,4 @@
 # ThreeJS with React
-## React Three Fiber, Drei, Cannon
 
 This project is currently a testing ground for features to be used for my personal/portfolio website:
 
@@ -24,3 +23,15 @@ More advanced:
 I have also tested and/or explored:
 - Standalone ThreeJS
 - React Three Flex
+
+## Dependencies
+```js
+react 18
+react-dom 18
+react-scripts 5.0.1
+
+three 0.139.2
+@react-three/fiber 8.0.11
+@react-three/drei 9.4.2
+@react-three/cannon 6.2.0
+```
